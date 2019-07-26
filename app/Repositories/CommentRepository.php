@@ -8,13 +8,16 @@
 
 namespace App\Repositories;
 
-use App\Models\Comment;
-
 class CommentRepository extends BaseRepository
 {
+    protected $entityName = "Comment";
+
+    /**
+     * CategoryRepository constructor.
+     */
     public function __construct()
     {
-        $this->setModel(new Comment());
+        parent::__construct($this->entityName);
     }
 
     /**
@@ -23,6 +26,6 @@ class CommentRepository extends BaseRepository
      */
     public function getCommentsByPostId($postId)
     {
-        return $this->model->where('post_id', $postId)->get();
+        return $this->entityModel->where('post_id', $postId)->get();
     }
 }

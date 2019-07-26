@@ -8,16 +8,16 @@
 
 namespace App\Repositories;
 
-use App\Models\Category;
-
 class CategoryRepository extends BaseRepository
 {
+    protected $entityName = "Category";
+
     /**
      * CategoryRepository constructor.
      */
     public function __construct()
     {
-        $this->setModel(new Category());
+        parent::__construct($this->entityName);
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoryRepository extends BaseRepository
      */
     public function getCategoryByIdWithPosts($categoryId)
     {
-        return $this->model
+        return $this->entityModel
             ->with('posts')
             ->where('id', $categoryId)
             ->get();
@@ -37,7 +37,7 @@ class CategoryRepository extends BaseRepository
      */
     public function getAllCategoriesWithPosts()
     {
-        return $this->model->with('posts')->get();
+        return $this->entityModel->with('posts')->get();
     }
 
 }

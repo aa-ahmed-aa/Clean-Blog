@@ -8,18 +8,20 @@
 
 namespace App\Repositories;
 
-use App\Models\Post;
 use App\Traits\Paginatable;
 
 class PostRepository extends BaseRepository
 {
     use Paginatable;
+
+    protected $entityName = "Post";
+
     /**
-     * PostRepository constructor.
+     * CategoryRepository constructor.
      */
     public function __construct()
     {
-        $this->setModel(new Post());
+        parent::__construct($this->entityName);
     }
 
     /**
@@ -28,7 +30,7 @@ class PostRepository extends BaseRepository
      */
     public function getPostsFullData()
     {
-        return $this->model->with('user')
+        return $this->entityModel->with('user')
             ->with('comments')
             ->with('category')
             ->get();
@@ -41,7 +43,7 @@ class PostRepository extends BaseRepository
      */
     public function getPostWithUserById($postId)
     {
-        return $this->model
+        return $this->entityModel
             ->with('user')
             ->with('category')
             ->where('id', $postId)

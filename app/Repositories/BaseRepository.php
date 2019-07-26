@@ -19,6 +19,10 @@ abstract class BaseRepository implements RepositoryContract
     protected $entityName;
     protected $entityModel;
 
+    /**
+     * BaseRepository constructor.
+     * @param string $entityModel
+     */
     public function __construct( string $entityModel )
     {
         if(empty($this->entityName))
@@ -32,26 +36,6 @@ abstract class BaseRepository implements RepositoryContract
     }
 
     /**
-     * Get Class Model
-     * @return Model
-     */
-    public function getModel()
-    {
-        return $this->model;
-    }
-
-    /**
-     * @param Model $model
-     * @return RepositoryContract $this
-     */
-    public function setModel(Model $model)
-    {
-        $this->model = $model;
-
-        return $this;
-    }
-
-    /**
      * Add New Entity
      * @param array $data
      * @return Model
@@ -61,12 +45,12 @@ abstract class BaseRepository implements RepositoryContract
         if ($data) {
             foreach ($data as $key => $value) {
                 if ($value) {
-                    $this->model->$key = $value;
+                    $this->entityModel->$key = $value;
                 }
             }
-            $this->model->save();
+            $this->entityModel->save();
         }
-        return $this->model;
+        return $this->entityModel;
     }
 
     /**
@@ -95,7 +79,7 @@ abstract class BaseRepository implements RepositoryContract
      */
     public function getItemByID($itemId)
     {
-        return $this->model->find($itemId);
+        return $this->entityModel->find($itemId);
     }
 
     /**
@@ -105,7 +89,7 @@ abstract class BaseRepository implements RepositoryContract
      */
     public function deleteItemById($itemId)
     {
-        return $this->model->delete($itemId);
+        return $this->entityModel->delete($itemId);
     }
 
     /**
@@ -114,7 +98,7 @@ abstract class BaseRepository implements RepositoryContract
      */
     public function getAllItems()
     {
-        return $this->model->all();
+        return $this->entityModel->all();
     }
 
     /**
@@ -122,6 +106,6 @@ abstract class BaseRepository implements RepositoryContract
      */
     public function paginateAllItem()
     {
-        return $this->model->paginate(10);
+        return $this->entityModel->paginate(10);
     }
 }

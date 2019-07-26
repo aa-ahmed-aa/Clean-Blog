@@ -8,12 +8,15 @@
 
 namespace App\Repositories;
 
-use App\Models\User;
-
 class UserRepository extends BaseRepository
 {
+    protected $entityName = "User";
+
+    /**
+     * UserRepository constructor.
+     */
     public function __construct()
     {
-        $this->setModel(new User());
+        parent::__construct($this->entityName);
     }
 }

@@ -58,8 +58,9 @@ class PostController extends Controller
     /**
      * @param $postId
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
-    public function destroy ( $postId )
+    public function destroy( $postId )
     {
         return $this->postManager->deletePostWithId($postId);
     }
@@ -78,7 +79,7 @@ class PostController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store ( Request $request )
+    public function store( Request $request )
     {
 
         $post = $this->postManager->storeNewPost($request->toArray());
