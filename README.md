@@ -46,5 +46,5 @@ Traits created and used in Application
 - Run `php artisan serve`
 
 ## Routes 
-> /admin/home 
-> /
+> /admin/home  <br>
+> /post/{POSTID}
