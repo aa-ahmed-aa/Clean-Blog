@@ -24,7 +24,7 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return view('admin.posts.home',['posts'=>$posts]);
+        return view('admin.posts.home', ['posts'=>$posts]);
     }
 
     /**
@@ -32,13 +32,14 @@ class PostController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update ($postId, Request $request )
+    public function update($postId, Request $request)
     {
-        $post = $this->postManager->updatePostWithId($postId,$request->toArray());
+        $post = $this->postManager->updatePostWithId($postId, $request->toArray());
 
         //if not updated
-        if(!$post)
+        if (!$post) {
             return redirect()->back()->withInput();
+        }
 
         return redirect(route('managePosts'));
     }
@@ -47,12 +48,12 @@ class PostController extends Controller
      * @param $postId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit ( $postId )
+    public function edit($postId)
     {
         $post = (new PostRepository())->getItemByID($postId);
         $categories = (new CategoryRepository())->getAllItems();
 
-        return view('admin.posts.edit',[ 'post' => $post, 'categories' => $categories ]);
+        return view('admin.posts.edit', [ 'post' => $post, 'categories' => $categories ]);
     }
 
     /**
@@ -60,7 +61,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Exception
      */
-    public function destroy( $postId )
+    public function destroy($postId)
     {
         return $this->postManager->deletePostWithId($postId);
     }
@@ -72,21 +73,22 @@ class PostController extends Controller
     {
         $categories = (new CategoryRepository())->getAllItems();
 
-        return view('admin.posts.new',['categories'=>$categories]);
+        return view('admin.posts.new', ['categories'=>$categories]);
     }
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store( Request $request )
+    public function store(Request $request)
     {
 
         $post = $this->postManager->storeNewPost($request->toArray());
 
         //if there is no post created
-        if (!$post)
+        if (!$post) {
             return redirect()->back()->withInput();
+        }
 
         return redirect(route('managePosts'));
     }

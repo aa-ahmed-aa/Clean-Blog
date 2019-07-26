@@ -35,7 +35,7 @@ class PostController extends ApiController
      */
     public function show($postId)
     {
-       return view('posts.post',['postId'=>$postId]);
+        return view('posts.post', ['postId'=>$postId]);
     }
 
     /**
@@ -58,8 +58,9 @@ class PostController extends ApiController
     {
         $data = $this->postManager->getSinglePost($postId);
 
-        if (!$data)
+        if (!$data) {
             return $this->setStatusCode(404)->respondWithError('Post Not Found!');
+        }
 
         return $this->setStatusCode(200)->respond($data);
     }

@@ -32,7 +32,7 @@ class CategoryController extends Controller
     {
         $categories = (new CategoryRepository())->getAllItems();
 
-        return view('admin.categories.home',['categories'=>$categories]);
+        return view('admin.categories.home', ['categories'=>$categories]);
     }
 
     /**
@@ -54,8 +54,9 @@ class CategoryController extends Controller
         $category = $this->categoryManager->updateCategoryWithId($categoryId, $request->toArray());
 
         //check if category updated
-        if(!$category)
+        if (! $category) {
             return redirect()->back()->withInput();
+        }
 
         return redirect(route('manageCategories'));
     }
@@ -68,13 +69,13 @@ class CategoryController extends Controller
     {
         $category = (new CategoryRepository())->getItemByID($categoryId);
 
-        return view('admin.categories.edit',['category'=>$category]);
+        return view('admin.categories.edit', ['category'=>$category]);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create ( )
+    public function create()
     {
         return view('admin.categories.new');
     }
@@ -83,13 +84,14 @@ class CategoryController extends Controller
      * @param Request $request
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store (Request $request )
+    public function store(Request $request)
     {
         $category = $this->categoryManager->storeNewCategory($request->toArray());
 
         //if no category created
-        if(!$category)
+        if (!$category) {
             return redirect()->back()->withInput();
+        }
 
         return redirect(route('manageCategories'));
     }

@@ -14,7 +14,7 @@ class Comment extends Model
         'post_id'
     ];
 
-    public function User()
+    public function user()
     {
         return $this->belongsTo("App\Models\User", 'id', 'user_id');
     }

@@ -14,6 +14,7 @@ abstract class BaseManager
 
     /**
      * @param array $items
+     * @param string $callback
      * @return array
      */
     public function wrapCollection(array $items, $callback = 'wrap')

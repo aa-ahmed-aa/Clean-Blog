@@ -48,7 +48,8 @@ class CategoryManager extends BaseManager
 
     /**
      * @param $categoryId
-     * @return int
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function deleteCategoryWithId($categoryId)
     {
@@ -83,8 +84,8 @@ class CategoryManager extends BaseManager
             'name'=>$category['name'],
             'id'=>$category['id'],
             'description'=>$category['description'],
-            'url'=>route('category.show',['categoryId'=>$category['id']]),
-            'posts'=> (new PostManager())->wrapCollection($category['posts'],'wrapperForCategoryListing'),
+            'url'=>route('category.show', ['categoryId'=>$category['id']]),
+            'posts'=> (new PostManager())->wrapCollection($category['posts'], 'wrapperForCategoryListing'),
             'post_number'=>count($category['posts']),
         ];
     }

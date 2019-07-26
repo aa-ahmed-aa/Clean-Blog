@@ -14,12 +14,11 @@ class CommentTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1,10) as $index)
-        {
+        foreach (range(1, 10) as $index) {
             DB::table('comments')->insert([
                 'content'=>$faker->text,
-                'post_id'=>$faker->numberBetween(1,10),
-                'user_id'=>$faker->numberBetween(1,10)
+                'post_id'=>$faker->numberBetween(1, 10),
+                'user_id'=>$faker->numberBetween(1, 10)
             ]);
 
         }

@@ -53,6 +53,6 @@ class ApiController extends Controller
      */
     public function respond($data)
     {
-        return response()->json($data,$this->getStatusCode());
+        return response()->json($data, $this->getStatusCode());
     }
 }

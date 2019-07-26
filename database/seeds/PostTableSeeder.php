@@ -14,13 +14,12 @@ class PostTableSeeder extends Seeder
     {
 
         $faker = Faker::create();
-        foreach (range(1,10) as $index)
-        {
+        foreach (range(1, 10) as $index) {
             DB::table('posts')->insert([
                 'title'=>$faker->text(50),
                 'content'=>$faker->paragraph,
-                'category_id'=>$faker->numberBetween(1,5),
-                'user_id'=>$faker->numberBetween(1,10)
+                'category_id'=>$faker->numberBetween(1, 5),
+                'user_id'=>$faker->numberBetween(1, 10)
             ]);
 
         }

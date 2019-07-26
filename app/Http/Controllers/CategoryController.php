@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Controllers\Api\ApiController;
 use App\Managers\CategoryManager;
-use Illuminate\Http\Request;
 
 class CategoryController extends ApiController
 {
@@ -20,7 +18,7 @@ class CategoryController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @import \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -37,8 +35,9 @@ class CategoryController extends ApiController
         $data = $this->categoryManager->getSingleCategoryWithPosts($categoryId);
 
         //if there is no data for that id
-        if(!$data)
+        if (!$data) {
             return $this->setStatusCode(404)->respondWithError('Category Not Found!');
+        }
 
         return $this->setStatusCode(200)->respond($data);
     }
@@ -57,7 +56,8 @@ class CategoryController extends ApiController
     /**
      * show single category
      * @param $categoryId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @import \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\View
      */
     public function show($categoryId)
     {
