@@ -8,7 +8,7 @@
 
 namespace App\Repositories;
 
-use App\Comment;
+use App\Models\Comment;
 
 class CommentRepository extends BaseRepository
 {

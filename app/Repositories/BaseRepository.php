@@ -16,8 +16,20 @@ abstract class BaseRepository implements RepositoryContract
 {
     use Paginatable;
 
-    protected $model;
+    protected $entityName;
+    protected $entityModel;
 
+    public function __construct( string $entityModel )
+    {
+        if(empty($this->entityName))
+        {
+            throw new \RuntimeException(
+                get_class($this) . '::$entityModel is not found'
+            );
+        }
+        $this->entityName = 'App\\Models\\'.$entityModel;
+        $this->entityModel = new $this->entityName();
+    }
 
     /**
      * Get Class Model

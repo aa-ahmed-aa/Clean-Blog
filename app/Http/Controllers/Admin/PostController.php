@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Managers\PostManager;
-use App\Post;
+use App\Models\Post;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;

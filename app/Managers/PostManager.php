@@ -31,6 +31,7 @@ class PostManager extends BaseManager
     /**
      * @param $postId
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function deletePostWithId($postId)
     {
