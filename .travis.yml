@@ -1,0 +1,22 @@
+language: php
+
+php:
+  - 7.1
+
+before_script:
+  - cp .env.travis .env
+  - mysql -e 'create database homestead_test;'
+  - composer self-update
+  - composer install --no-interaction
+
+script:
+  - vendor/bin/phpunit
+Raw
+
+
+after_failure:
+  - curl http://127.0.0.1:8000
+
+notifications:
+  email:
+    on_success: never
